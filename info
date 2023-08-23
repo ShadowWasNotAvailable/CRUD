@@ -1,0 +1,24 @@
+Pokemon inventory
+
+Skal bli som en type index med informasjon om pokemon i ditt inventory sortert etter når du fikk de.
+
+Info
+Number
+Name
+Level
+Type
+Generation
+Pic?
+
+
+
+
+Abilities
+
+Base Stats
+HP
+ATT
+Def
+S. Att
+S. Def
+Spd
