@@ -2,6 +2,11 @@ Pokemon inventory
 
 Skal bli som en type index med informasjon om pokemon i ditt inventory sortert etter når du fikk de.
 
+1. Legger inn all info om pokemon.
+2. Skal kan kunne leses og sorteres med når den ble satt till.
+3. Mulighet til å oppdatere info om pokemon.
+4. Mulighet til å fjerne pokemon fra listen.
+
 Info
 Number
 Name
