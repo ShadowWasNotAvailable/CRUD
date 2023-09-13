@@ -1,41 +1,78 @@
 var Table = document.querySelector('#table')
 var Send = document.querySelector('#Send_info')
+var tbody = document.querySelector('#tbody')
+var inputs = document.querySelectorAll("input[Type='text']")
+var rows = document.getElementsByClassName("row")
 
-var Name = document.querySelector('#Name')
-var Number = document.querySelector('#Number')
-var Type = document.querySelector('#Type')
-var Generation = document.querySelector('#Generation')
-var HP = document.querySelector('#HP')
-var ATT = document.querySelector('#ATT')
-var Def = document.querySelector('#Def')
-var S_Att = document.querySelector('#S_Att')
-var S_Def = document.querySelector('#S_Def')
-var Spd = document.querySelector('#Spd')
+var tr = "<tr class='row'>"
+var bten = ""
+var row_edit_active = false
 
-Send.addEventListener('click' , Send_info)
+function Row_class(){
+    tr = "<tr class='row'>"
+}
 
-Name_inf = Name.innerHTML
-Number_inf = Number.innerHTM
-Type_inf = Type.innerHTML
-Generation_inf = Generation.innerHTML
-HP_inf = HP.innerHTML
-ATT_inf = ATT.innerHTML
-Def_inf = Def.innerHTML
-S_Att_inf = S_Att.innerHTML
-S_Def_inf = S_Def.innerHTML
-Spd_inf = Spd.innerHTML
 
-function Send_info(){
-    Table.innerHTML += "<tr><td>" + Name_inf +"</td><td>" + Number_inf +"</td><td>" + Type_inf + "</td><td>" + Generation_inf +"</td><td>" + HP_inf + "</td><td>" + ATT_inf + "</td><td>" + Def_inf + "</td><td>" + S_Att_inf + "</td><td>" + S_Def_inf + "</td><td>" + Spd_inf + "</td></tr>"
+Send.addEventListener('click' , function(){
 
-    Name.innerHTML = ""
-    Number.innerHTM = ""
-    Type.innerHTML = ""
-    Generation.innerHTML = ""
-    HP.innerHTML = ""
-    ATT.innerHTML = ""
-    Def.innerHTML = ""
-    S_Att.innerHTML = ""
-    S_Def.innerHTML = ""
-    Spd.innerHTM = ""
+    inputs.forEach(
+        function(node, index){
+            console.log(node.value)
+            tr += "<td>" + node.value + "</td>"
+          
+        })
+    bten = "<td><button class='btn'>" + "Remove" + "</button></td>"
+    tbody.innerHTML += tr + bten
+
+    document.get
+    console.log(tr)
+    tr += "</tr>";
+    Row_class()
+    bten = " "
+
+    removebtn()
+
+    var rows = document.getElementsByClassName("row");
+    for (var i = 0; i < rows.length; i++){
+    rows[i].addEventListener("click", set_inputs);
+    console.log(rows, "update events added")
+}
+
+})
+
+function removebtn(){
+    var elements = document.getElementsByClassName("btn");
+        for (var i = 0; i < elements.length; i++){
+            elements[i].addEventListener("click" , removeitem)
+    }
+}
+function removeitem(){
+    this.parentNode.parentNode.remove();
+}
+
+
+
+function set_inputs(){
+    if (row_edit_active == false){ 
+        var tds = this.childNodes
+        tds.forEach(function(node, index){
+           console.log(node)
+            node.innerHTML = "<input type='text' value='"+node.innerHTML +"'>"
+            row_edit_active = true
+            
+        })
+        
+    }
+    
+    function deactivateRowEditActive(event) {
+        if (event.key === "Enter") {
+            row_edit_active = false;
+            console.log("row_edit_active has been deactivated.");
+            tds.forEach(function(node, index){
+                console.log(node)
+                node.innerHTML = this.innerHTML
+            })
+        }
+    }
+    document.addEventListener("keydown", deactivateRowEditActive);
 }
