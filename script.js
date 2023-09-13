@@ -7,6 +7,8 @@ var rows = document.getElementsByClassName("row")
 var tr = "<tr class='row'>"
 var bten = ""
 var row_edit_active = false
+var Active_row
+var strTest
 
 function Row_class(){
     tr = "<tr class='row'>"
@@ -54,25 +56,30 @@ function removeitem(){
 
 function set_inputs(){
     if (row_edit_active == false){ 
-        var tds = this.childNodes
-        tds.forEach(function(node, index){
+        tds = this.childNodes
+        Active_row = this
+        console.log(Active_row)
+        tds.forEach(function(node, index){ //node er en stykk TD
            console.log(node)
-            node.innerHTML = "<input type='text' value='"+node.innerHTML +"'>"
+            strTest = "<input type='text' value='"+node.innerHTML +"'>"
             row_edit_active = true
-            
+            console.log(index)  
+            if (index < 9){
+                node.innerHTML = strTest
+            }
         })
         
     }
-    
-    function deactivateRowEditActive(event) {
+    this.addEventListener("keydown", function deactivateRowEditActive(event){
         if (event.key === "Enter") {
             row_edit_active = false;
             console.log("row_edit_active has been deactivated.");
             tds.forEach(function(node, index){
-                console.log(node)
-                node.innerHTML = this.innerHTML
+                node.innerHTML = node.children[0].value
             })
         }
-    }
-    document.addEventListener("keydown", deactivateRowEditActive);
+    })
+    
+
+    
 }
